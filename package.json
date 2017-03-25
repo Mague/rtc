@@ -1,0 +1,25 @@
+{
+  "name": "rtc",
+  "version": "1.0.0",
+  "description": "Web-RTC",
+  "main": "index.js",
+  "dependencies": {
+    "bunyan": "^1.8.9",
+    "express": "^4.15.2",
+    "rtc-switchboard": "^3.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mague/rtc.git"
+  },
+  "author": "Enmanuel Molina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mague/rtc/issues"
+  },
+  "homepage": "https://github.com/Mague/rtc#readme"
+}
