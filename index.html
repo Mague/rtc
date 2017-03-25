@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web-RTC</title>
+    <style>
+        #messages {
+            border: 1px solid black;
+            min-height: 20px;
+        }
+    </style>
+    <script src="http://localhost:3000/public/js/rtc.js"></script>    
+</head>
+<body>
+    <div id="messages" contenteditable></div>
+    <div id="l-video" style="display: inline-block;width: 50%"></div>
+    <div id="r-video" style="display: inline-block;width: 50%"></div>
+    <script>
+      
+        // call RTC module
+        var rtc = RTC({
+            room: 'test-room',
+            signaller: 'http://localhost:3000'
+        });
+        // A div element to show our local video stream
+        var localVideo = document.getElementById('l-video');
+        // A div element to show our remote video streams
+        var remoteVideo = document.getElementById('r-video');
+        // A contenteditable element to show our messages
+        var messageWindow = document.getElementById('messages');
+
+        // Bind to events happening on the data channel
+        function bindDataChannelEvents(id, channel, attributes, connection) {
+
+            // Receive message
+            channel.onmessage = function (evt) {
+                messageWindow.innerHTML = evt.data;
+            };
+
+            // Send message
+            messageWindow.onkeyup = function () {
+                console.log("Enviando mensaje")
+                channel.send(this.innerHTML);
+            };
+        }
+        // Start working with the established session
+        function init(session) {
+            session.createDataChannel('chat');
+            session.on('channel:opened:chat', bindDataChannelEvents);
+        }
+        setInterval(function(){
+            console.log(rtc.local)
+        },2000)
+        // Display local and remote video streams
+        localVideo.appendChild(rtc.local);
+        remoteVideo.appendChild(rtc.remote);
+        
+        // Detect when RTC has established a session
+        rtc.on('ready', init);
+    </script>
+</body>
+</html>
