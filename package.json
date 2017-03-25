@@ -8,6 +8,9 @@
     "express": "^4.15.2",
     "rtc-switchboard": "^3.2.0"
   },
+  "scripts": {
+    "start": "node index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Mague/rtc.git"
