@@ -11,7 +11,7 @@
             min-height: 20px;
         }
     </style>
-    <script src="http://localhost:3000/public/js/rtc.js"></script>    
+    <script src="https://rtcmague.herokuapp.com/public/js/rtc.js"></script>    
 </head>
 <body>
     <div id="messages" contenteditable></div>
@@ -22,7 +22,7 @@
         // call RTC module
         var rtc = RTC({
             room: 'test-room',
-            signaller: 'http://localhost:3000'
+            signaller: 'https://rtcmague.herokuapp.com'
         });
         // A div element to show our local video stream
         var localVideo = document.getElementById('l-video');
