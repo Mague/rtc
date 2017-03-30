@@ -2,7 +2,7 @@
   "name": "rtc",
   "version": "1.0.0",
   "description": "Web-RTC",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "bunyan": "^1.8.9",
     "express": "^4.15.2",
