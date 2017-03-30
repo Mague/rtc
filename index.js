@@ -58,7 +58,8 @@ if (cluster.isMaster) {
         requestCert: false,
         rejectUnauthorized: false
     };
-    var server = https.createServer(options,app).listen(0)
+    var http = require('http')
+    var server = http.createServer(options,app).listen(0)
 
     require('./app/socketIO')(server/*,peer*/)
  //    switchboard = require('rtc-switchboard')(server)
