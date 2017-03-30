@@ -1,14 +1,14 @@
 var cluster   = require('cluster'),
     net       = require('net'),
     conf = require('./conf'),
-    port      = conf.port,
+    port      = process.env.PORT || conf.port,
     https = require("https"),
     bunyan = require('bunyan'),
 	log = bunyan.createLogger({ name: 'rtc-switchboard' }),
     fs = require("fs");
 // var board = require('rtc-switch')();
 // var peer = board.connect();
-console.log("peer")
+// console.log("peer")
 if (cluster.isMaster) {
     const num_processes = require('os').cpus().length;
     var workers = [];
@@ -45,8 +45,8 @@ if (cluster.isMaster) {
     };
     var server = net.createServer({ pauseOnConnect: true }, function(connection) {
         console.log(connection.remoteAddress,num_processes)
-        var worker = workers[worker_index(connection.remoteAddress, num_processes)];
-        worker.send('sticky-session:connection', connection);
+        // var worker = workers[worker_index(connection.remoteAddress, num_processes)];
+        // worker.send('sticky-session:connection', connection);
     }).listen(port,'0.0.0.0');
 } else {
     var app = require('./app/index');
