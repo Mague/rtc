@@ -52,14 +52,15 @@ if (cluster.isMaster) {
     var app = require('./app/index');
     var app = new app({}).expressServer
     // var server = app.listen(0, 'localhost')
-    var options = {
+    /*var options = {
         key  : fs.readFileSync('./ssl/rtc.key'),
         cert : fs.readFileSync('./ssl/rtc.crt'),
         requestCert: false,
         rejectUnauthorized: false
-    };
-    var http = require('http')
+    };*/
+    // var http = require('http')
     var server = http.createServer(app).listen(0)
+    // var server = https.createServer(options,app).listen(0)
 
     require('./app/socketIO')(server/*,peer*/)
  //    switchboard = require('rtc-switchboard')(server)
