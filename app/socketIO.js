@@ -1,5 +1,5 @@
 const conf = require('../conf')
-const sio_redis = require('socket.io-redis')
+// const sio_redis = require('socket.io-redis')
 var board = require('rtc-switch')();
 module.exports = function(server){
 	const io_conf = { transports: ['websocket', 'polling'] }
