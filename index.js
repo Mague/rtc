@@ -58,7 +58,7 @@ if (cluster.isMaster) {
         requestCert: false,
         rejectUnauthorized: false
     };*/
-    // var http = require('http')
+    var http = require('http')
     var server = http.createServer(app).listen(0)
     // var server = https.createServer(options,app).listen(0)
 
