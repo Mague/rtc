@@ -1,0 +1,19 @@
+{
+    "port": 3000,
+    "mongoDB": {
+        "name": "rtc",
+        "host": "localhost"
+    },
+    "https":false,
+    "redis":{
+        "host":"127.0.0.1",
+        "port":"6379"
+    },
+    "ssl": {
+        "key": "ssl/rtc.key",
+        "crt": "ssl/rtc.crt",
+        "cst": "ssl/rtc.csr",
+        "requestCert": false,
+        "rejectUnauthorized": false
+    }
+}

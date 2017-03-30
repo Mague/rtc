@@ -5,35 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Web-RTC</title>
+    <link rel="stylesheet" href="css/mague.css">
     <style>
         #messages {
             border: 1px solid black;
             min-height: 20px;
         }
     </style>
-    <script src="https://rtcmague.herokuapp.com/public/js/rtc.js"></script>    
+    <script src="js/rtc.js"></script>  
 </head>
 <body>
     <div id="messages" contenteditable></div>
-    <div id="l-video" style="display: inline-block;width: 50%"></div>
-    <div id="r-video" style="display: inline-block;width: 50%"></div>
+    <div class="container-video">
+        <div id="local" class="video-i"></div>
+        <div id="remoto" class="video-others"></div>
+    </div>
     <script>
       
         // call RTC module
         var rtc = RTC({
             room: 'test-room',
-            signaller: 'https://rtcmague.herokuapp.com'
+            // signaller: 'https://rtcmague.herokuapp.com'
+            signaller: 'https://192.168.0.105:3000',
+            localContainer:'#local',
+            remoteContainer:'#remoto'
         });
         // A div element to show our local video stream
-        var localVideo = document.getElementById('l-video');
+        var localVideo = document.getElementById('local');
         // A div element to show our remote video streams
-        var remoteVideo = document.getElementById('r-video');
+        var remoteVideo = document.getElementById('remoto');
         // A contenteditable element to show our messages
         var messageWindow = document.getElementById('messages');
 
         // Bind to events happening on the data channel
         function bindDataChannelEvents(id, channel, attributes, connection) {
-
             // Receive message
             channel.onmessage = function (evt) {
                 messageWindow.innerHTML = evt.data;
@@ -41,7 +46,7 @@
 
             // Send message
             messageWindow.onkeyup = function () {
-                console.log("Enviando mensaje")
+                // console.log("Enviando mensaje")
                 channel.send(this.innerHTML);
             };
         }
@@ -50,15 +55,15 @@
             session.createDataChannel('chat');
             session.on('channel:opened:chat', bindDataChannelEvents);
         }
-        setInterval(function(){
-            console.log(rtc.local)
-        },2000)
-        // Display local and remote video streams
         localVideo.appendChild(rtc.local);
         remoteVideo.appendChild(rtc.remote);
+        // Display local and remote video streams
+        // localVideo.innerHTML = (rtc.local!=undefined)? rtc.local : ''
+        // remoteVideo.innerHTML = (rtc.remote!=undefined)? rtc.remote : ''
         
         // Detect when RTC has established a session
         rtc.on('ready', init);
+        // console.log(rtc)
     </script>
 </body>
 </html>

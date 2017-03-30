@@ -1,0 +1,78 @@
+<html>
+<head>
+  <title>Express HTML</title>
+  <style type="text/css">
+    video{
+      display: none;
+    }
+  </style>
+</head>
+<body style="padding: 0px">
+  <div align="center" style="background-color: lightblue;padding: 10px;">
+    MultiStreaming
+  </div>
+  <video autoplay></video>
+  <div> 
+    <div style="float:left;display:none "> 
+          <canvas id="miCanvas" width="600" height="450" ></canvas>
+    </div>
+    <center>
+      <div style="width: 50%;"> 
+        <img id="miImg" style="width: 100%;" >
+      </div> 
+    </center>
+  </div>
+  
+  <script src="js/bundle.js"></script>
+  <script type="text/javascript">
+    // var bandera=0;
+    // var socket = io.connect('https://localhost:3000');
+    // socket.on('connect',function(){
+    //   // alert('Conectado')
+    // })
+    // window.URL=window.URL || window.webkitURL;
+    // navigator.getUserMedia=navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+    // navigator.getUserMedia({audio:true,video:true},function (vid) {
+    //   bandera=1;
+    //   document.querySelector('video').src=window.URL.createObjectURL(vid);
+    // },function(err) {
+    //   console.log("An error occured! " + err);
+    // });
+    // window.requestAnimFrame=(function(callback) {
+    //   return window.requestAnimationFrame ||
+    //   window.webkitRequestAnimationFrame ||
+    //   window.mozRequestAnimationFrame ||
+    //   window.oRequestAnimationFrame ||
+    //   window.msRequestAnimationFrame ||
+    //   function(callback) {
+    //     window.setTimeout(callback,1000/100);
+    //   };
+    // })();
+    // function dFrane(ctx,video,canvas) {
+    //   ctx.drawImage(video,0,0);
+    //   var dataURL=canvas.toDataURL('image/jpeg',0.2);
+    //   if (bandera!=0) {
+    //     socket.emit('data',dataURL);
+    //   }
+    //   requestAnimFrame(function(){
+    //     dFrane(ctx,video,canvas)
+    //   });
+    // }
+    // window.addEventListener('load',init);
+    // function init(){
+    //   var canvas=document.querySelector('#miCanvas');
+    //   var video=document.querySelector('video');
+    //   var ctx=canvas.getContext('2d');
+    //   dFrane(ctx,video,canvas)
+    // }
+    //   socket.on('setFrame',proc);
+    //   function proc(img){
+    //     // alert("hola")
+    //     console.log("ol")
+
+    //     document.querySelector('#miImg').src=img;
+
+    //   }
+  </script>
+</body>
+</html>
