@@ -5,13 +5,16 @@ module.exports = function(server){
 	const io_conf = { transports: ['websocket', 'polling'] }
     var sio = require('socket.io')
     // var io = sio.listen(server)
-    var io = sio(server,{ transports: ['websocket', 'polling','flashsocket'] })
+    var io = sio(server,{ 
+    	transports: ['websocket', 'polling','flashsocket'],
+    	origins:'*'
+    })
 
     // io.adapter(sio_redis({ host: conf.redis.host, port: conf.redis.port }))
     io.on('listening',function(socket){
 		console.log("llego una peticion")
     })
-    // io.set('origins','')
+    // io.set('origins','*');
     io.on('connection', function (socket) {
     	console.log("Sockets listos")
     	var peer = board.connect();
