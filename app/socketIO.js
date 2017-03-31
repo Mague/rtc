@@ -14,7 +14,7 @@ module.exports = function(server){
 		console.log("llego una peticion")
     })
     // io.set('origins','*');
-    io.set('origins','localhost:8100')
+    io.set('origins','http://localhost:*')
     io.on('connection', function (socket) {
     	console.log("Sockets listos")
     	var peer = board.connect();
