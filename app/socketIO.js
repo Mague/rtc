@@ -11,6 +11,7 @@ module.exports = function(server){
     io.on('listening',function(socket){
 		console.log("llego una peticion")
     })
+    io.set('origins','*');
     io.on('connection', function (socket) {
     	console.log("Sockets listos")
     	var peer = board.connect();
