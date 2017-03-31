@@ -47,7 +47,7 @@ if (cluster.isMaster) {
     var server = net.createServer({ pauseOnConnect: true }, function(connection) {
         console.log(connection.remoteAddress,num_processes)
         var worker = workers[worker_index(connection.remoteAddress, num_processes)];
-        worker.send('sticky-session:connection', connection);
+        // worker.send('sticky-session:connection', connection);
     }).listen(port,'0.0.0.0');
 } else {
     var app = require('./app/index');
