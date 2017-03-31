@@ -9,7 +9,7 @@ module.exports = function(server){
     // var io = sio.listen(server)
     var io = sio(server,{ 
     	transports: ['websocket', 'polling','flashsocket','xhr-polling'],
-    	origins:'http://localhost:*'
+    	origins:'http://localhost:* https://rtcmague.herokuapp.com:*'
     })
 
     // io.adapter(sio_redis({ host: conf.redis.host, port: conf.redis.port }))
