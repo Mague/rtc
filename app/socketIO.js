@@ -24,5 +24,49 @@ module.exports = function(server){
 			console.log("hola");
 			io.sockets.emit('setFrame',img);
 		});
+
+
+		//Chat de darwin
+		console.log('se ha abierto una conexion');
+		socket.emit('roomList',rooms);
+
+		socket.on('createRoom',function(data){
+			rooms.push(data);
+			socket.emit('createRoomRes',rooms);
+
+		});
+
+		socket.on('getRooms',function(data){
+		//rooms.push(data);
+			socket.emit('createRoomRes',rooms);
+		});
+
+		socket.on('joinRoom',function(data){
+			console.log('requested join');
+			console.log(JSON.stringify(data));
+			socket.join(data.room);
+			if(streams.length<5){
+			 streams.push({user:data.user,video:'',audio:''});
+			}
+			//Tell all those in the room that a new user joined
+			io.in(data.room).emit('user joined', data.user);
+		})
+
+		socket.on('newMessage',function(data){
+			//console.log('nuevo mensaje', )
+			data.date = new Date();
+			io.in(data.room).emit('gotMessage', data);
+		})
+
+		socket.on('videoTest',function(data){
+		//console.log('activad videoTest');
+		//console.log(data);
+			for(var i=0; i<streams.length;i++){
+				if(streams[i].user == data.user){
+				  streams[i].video = data.video;
+				}
+			}
+			io.in(data.room).emit('VideoStream', streams);
+		})
     })
 }
