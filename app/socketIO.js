@@ -5,9 +5,9 @@ module.exports = function(server){
 	const io_conf = { transports: ['websocket', 'polling'] }
     var sio = require('socket.io')
     // var io = sio.listen(server)
-    var io = sio(server,{ 
+    var io = sio(server,/*{ 
     	transports: ['websocket', 'polling','flashsocket','xhr-polling']
-    })
+    }*/)
 
     // io.adapter(sio_redis({ host: conf.redis.host, port: conf.redis.port }))
     io.on('listening',function(socket){
