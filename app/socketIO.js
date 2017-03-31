@@ -60,7 +60,7 @@ module.exports = function(server){
 		})
 
 		socket.on('newMessage',function(data){
-			//console.log('nuevo mensaje', )
+			console.log('nuevo mensaje', data)
 			data.date = new Date();
 			io.in(data.room).emit('gotMessage', data);
 		})
