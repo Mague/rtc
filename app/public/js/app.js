@@ -18,7 +18,7 @@ capture({ audio: true, video: true }, { plugins: plugins }, function(err, localS
 	  attach(localStream, { plugins: plugins }, function(err, el) {
 	    local.appendChild(el);
 	  });
-  	var socket = require('socket.io-client')('https://192.168.0.109:3000');
+  	var socket = require('socket.io-client')('https://rtcmague.herokuapp.com');
 	var quickconnect = require('rtc-quickconnect');
 	var signaller = require('rtc-signaller-socket.io')(socket);
 	var freeice = require('freeice');
