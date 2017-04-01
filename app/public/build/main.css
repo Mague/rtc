@@ -4776,6 +4776,10 @@ textarea::-webkit-input-placeholder {
   padding-left: 2px;
 }
 
+textarea::-moz-placeholder {
+  padding-left: 2px;
+}
+
 textarea:-ms-input-placeholder {
   padding-left: 2px;
 }
@@ -42102,7 +42106,7 @@ ion-navbar.toolbar {
 }
 
 page-chat .cover {
-  width: 240px;
+  width: 100px;
   object-fit: cover;
 }
 
