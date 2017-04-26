@@ -136,7 +136,7 @@ module.exports = function(server){
 				typeDice:b,
 				user:user
 			};
-			io.in(data.room).emit('randomDicesResult',jsonDice);
+			io.in(myRoom).emit('randomDicesResult',jsonDice);
 		})
     })
 }
