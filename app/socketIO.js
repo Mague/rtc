@@ -133,7 +133,8 @@ module.exports = function(server){
 				sum:sum,
 				result:result,
 				array:array,
-				typeDice:b
+				typeDice:b,
+				user:user
 			};
 			io.in(data.room).emit('randomDicesResult',jsonDice);
 		})
