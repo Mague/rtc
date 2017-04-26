@@ -21,7 +21,7 @@ module.exports = function(server){
     io.on('connection', function (socket) {
     	console.log("Sockets listos")
     	var peer = board.connect();
-
+    	let myRoom;
 		socket.on('rtc-signal', peer.process);
 		peer.on('data', function(data) {
 			console.log("SEÑAL")
@@ -47,13 +47,17 @@ module.exports = function(server){
 		//rooms.push(data);
 			socket.emit('createRoomRes',rooms);
 		});
-
+		socket.on('disconect',function(){
+			console.log(socket.id+" se desconecto de "+myRoom)
+			socket.leave(myRoom);
+		});
 		socket.on('joinRoom',function(data){
 			console.log('requested join');
 			console.log(JSON.stringify(data));
+			myRoom = data.room;
 			socket.join(data.room);
 			if(streams.length<5){
-			 streams.push({user:data.user,video:'',audio:''});
+				streams.push({user:data.user,video:'',audio:''});
 			}
 			//Tell all those in the room that a new user joined
 			io.in(data.room).emit('user joined', data.user);
