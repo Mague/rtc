@@ -47,7 +47,7 @@ module.exports = function(server){
 		//rooms.push(data);
 			socket.emit('createRoomRes',rooms);
 		});
-		socket.on('disconect',function(){
+		socket.on('disconnect',function(){
 			console.log(socket.id+" se desconecto de "+myRoom)
 			socket.leave(myRoom);
 		});
