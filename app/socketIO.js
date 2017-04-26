@@ -59,8 +59,8 @@ module.exports = function(server){
 			console.log(JSON.stringify(data));
 			myRoom = data.room;
 			socket.join(data.room);
+			user = data.user;
 			if(streams.length<5){
-				user = data.user;
 				streams.push({user:data.user,video:'',audio:''});
 			}
 			//Tell all those in the room that a new user joined
