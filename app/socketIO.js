@@ -83,5 +83,59 @@ module.exports = function(server){
 			}
 			io.in(data.room).emit('VideoStream', streams);
 		})
+
+		socket.on('randomDices',(data)=>{
+			var b = data.b
+			var countDados=data.countDados
+			if (countDados=='') {
+				countDados=0;
+			}
+			var modDados=data.modDados
+			// alert(modDados)
+			modDados=modDados.toString();
+			if (modDados=="NaN") {
+				// alert("hola")
+				modDados=0;
+			}
+			modDados=parseInt(modDados);
+			var radDados1=data.radDados1
+			// var radDados2=document.querySelector("#gender1"+b).value;
+			var a=1;
+			var array=[];
+			var sum=0;
+			var op=1;
+			var sign="+";
+			if (radDados1==true) {
+				op=1;
+				sign=" + ";
+			}else{
+				op=0;
+				sign=" - ";
+			}
+			// alert(countDados)
+			for(i=0;i<countDados;i++){
+				array.push(Math.round(Math.random()*(b-a)+parseInt(a)));
+				// alert(JSON.stringify(array));
+				sum+=array[i];
+				// alert(sum);
+			}
+			
+			if (op==0) {
+				sum-=modDados;
+			}else if(op==1){
+				sum+=modDados;
+			}
+			var result="Roll "+countDados+"d"+b+sign+modDados+" = "+sum
+			var jsonDice={
+				countDados:countDados,
+				sign:sign,
+				modDice:modDados,
+				sum:sum,
+				result:result,
+				array:array,
+				typeDice:b
+			};
+			io.in(data.room).emit('randomDicesResult',jsonDice);
+		})
     })
 }
