@@ -48,8 +48,10 @@ module.exports = function(server){
 			socket.emit('createRoomRes',rooms);
 		});
 		socket.on('disconnect',function(){
-			console.log(socket.id+" se desconecto de "+myRoom)
-			socket.leave(myRoom);
+			if(myRoom != undefined){
+				console.log(socket.id+" se desconecto de "+myRoom)
+				socket.leave(myRoom);
+			}
 		});
 		socket.on('joinRoom',function(data){
 			console.log('requested join');
